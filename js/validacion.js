@@ -1,5 +1,3 @@
-console.log("Archivo validacion.js cargado correctamente");
-
 function validar() {
     console.log("Ejecutando la función de validación");
     var retorno_nombre_usuario = validar_nombre_usuario();
@@ -16,7 +14,6 @@ function validar_nombre_usuario() {
     var input_nombre_usuario = document.getElementById('input-nombre-usuario');
     var div_error_nombre_usuario = document.getElementById('error-nombre-usuario');
     var nombre_usuario = input_nombre_usuario.value;
-    console.log("Validando nombre de usuario:", nombre_usuario);
 
     if (nombre_usuario === '') {
         div_error_nombre_usuario.innerHTML = 'El nombre de usuario es obligatorio';
@@ -40,7 +37,6 @@ function validar_contraseña() {
     var input_contraseña = document.getElementById('input-contraseña');
     var div_error_contraseña = document.getElementById('error-contraseña');
     var contraseña = input_contraseña.value;
-    console.log("Validando contraseña:", contraseña);
 
     if (contraseña === '') {
         div_error_contraseña.innerHTML = 'La contraseña es obligatoria';
@@ -62,7 +58,6 @@ function validar_confirmacion_contraseña() {
     var div_error_confirmacion_contraseña = document.getElementById('error-confirmar-contraseña');
     var contraseña = input_contraseña.value;
     var confirmacion_contraseña = input_confirmacion_contraseña.value;
-    console.log("Validando confirmación de contraseña:", confirmacion_contraseña);
 
     if (confirmacion_contraseña === '') {
         div_error_confirmacion_contraseña.innerHTML = 'La confirmación de la contraseña es obligatoria';
@@ -82,7 +77,6 @@ function validar_telefono() {
     var input_telefono = document.getElementById('input-telefono');
     var div_error_telefono = document.getElementById('error-telefono');
     var telefono = input_telefono.value;
-    console.log("Validando teléfono:", telefono);
 
     if (telefono === '') {
         div_error_telefono.innerHTML = 'El teléfono es obligatorio';
@@ -120,7 +114,6 @@ function validar_aficiones() {
     var div_error_aficiones = document.getElementById('error-aficiones');
     var aficiones = input_aficiones.value;
     var aficiones2 = input_aficiones_2.value;
-    console.log("Validando aficiones:", aficiones);
 
     if (aficiones === '' || aficiones2 === '') {
         div_error_aficiones.innerHTML = 'deben ser almenos 2 aficiones';
@@ -140,7 +133,6 @@ function validar_url() {
     var input_url = document.getElementById('input-url');
     var div_error_url = document.getElementById('error-url');
     var url = input_url.value;
-    console.log("Validando URL:", url);
 
     if (url === '') {
         div_error_url.innerHTML = 'La URL es obligatoria';
