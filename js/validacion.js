@@ -4,9 +4,10 @@ function validar() {
     var retorno_confirmacion_contraseña = validar_confirmacion_contraseña();
     var retorno_telefono = validar_telefono();
     var retorno_comuna = validar_comuna();
+    var retorno_direccion = validar_direccion();
     var retorno_aficiones = validar_aficiones();
     var retorno_url = validar_url();
-    return retorno_nombre_usuario && retorno_contraseña && retorno_confirmacion_contraseña && retorno_telefono && retorno_comuna && retorno_aficiones && retorno_url;
+    return retorno_nombre_usuario && retorno_contraseña && retorno_confirmacion_contraseña && retorno_telefono && retorno_comuna &&retorno_direccion && retorno_aficiones && retorno_url;
 }
 
 function validar_nombre_usuario() {
@@ -96,11 +97,7 @@ function validar_confirmacion_contraseña() {
     var contraseña = input_contraseña.value;
     var confirmacion_contraseña = input_confirmacion_contraseña.value;
 
-    if (confirmacion_contraseña === '') {
-        div_error_confirmacion_contraseña.innerHTML = 'La confirmación de la contraseña es obligatoria';
-        div_error_confirmacion_contraseña.className = 'text-danger small mt-1';
-        return false;
-    } else if (confirmacion_contraseña !== contraseña) {
+   if (confirmacion_contraseña !== contraseña) {
         div_error_confirmacion_contraseña.innerHTML = 'Las contraseñas no coinciden';
         div_error_confirmacion_contraseña.className = 'text-danger small mt-1';
         return false;
@@ -119,8 +116,8 @@ function validar_telefono() {
         div_error_telefono.innerHTML = 'El teléfono es obligatorio';
         div_error_telefono.className = 'text-danger small mt-1';
         return false;
-    } else if (telefono.length < 10) {
-        div_error_telefono.innerHTML = 'El teléfono debe tener al menos 10 caracteres';
+    } else if (telefono.length < 9) {
+        div_error_telefono.innerHTML = 'El teléfono debe tener al menos 9 caracteres';
         div_error_telefono.className = 'text-danger small mt-1';
         return false;
     } else {
@@ -143,8 +140,22 @@ function validar_comuna() {
         div_error_comuna.innerHTML = '';
         return true;
     }
-}
+} 
 
+function validar_direccion() {
+    var input_direccion = document.getElementById('input-direccion');
+    var div_error_direccion = document.getElementById('error-direccion');
+    var direccion = input_direccion.value;
+
+    if (direccion === '') {
+        div_error_direccion.innerHTML = 'La dirección es obligatoria';
+        div_error_direccion.className = 'text-danger small mt-1';
+        return false;
+    }
+
+    div_error_direccion.innerHTML = '';
+    return true;
+}
 function validar_aficiones() {
     var input_aficiones = document.getElementById('input-aficiones');
     var input_aficiones_2 = document.getElementById('input-aficiones_2');
@@ -171,12 +182,8 @@ function validar_url() {
     var div_error_url = document.getElementById('error-url');
     var url = input_url.value;
 
-    if (url === '') {
-        div_error_url.innerHTML = 'La URL es obligatoria';
-        div_error_url.className = 'text-danger small mt-1';
-        return false;
-    } else if (!url.startsWith('http://') && !url.startsWith('https://')) {
-        div_error_url.innerHTML = 'La URL debe comenzar con "http://" o "https://"';
+    if (!url.startsWith('http://') && !url.startsWith('https://') && !url.startsWith('www.')) {
+        div_error_url.innerHTML = 'La URL debe comenzar con "http://" , "https://" o "www."';
         div_error_url.className = 'text-danger small mt-1';
         return false;
     } else {
@@ -184,3 +191,4 @@ function validar_url() {
         return true;
     }
 }
+
