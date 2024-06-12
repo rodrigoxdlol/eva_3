@@ -26,10 +26,42 @@ function validar_nombre_usuario() {
         div_error_nombre_usuario.innerHTML = 'El nombre de usuario no puede tener más de 10 caracteres';
         div_error_nombre_usuario.className = 'text-danger small mt-1';
         return false;
-    } else {
-        div_error_nombre_usuario.innerHTML = '';
-        return true;
     }
+
+    var primer_caracter = nombre_usuario.charAt(0);
+    if (!esLetra(primer_caracter)) {
+        div_error_nombre_usuario.innerHTML = 'El nombre de usuario debe comenzar con una letra';
+        div_error_nombre_usuario.className = 'text-danger small mt-1';
+        return false;
+    }
+
+    var encontradoNumero = false;
+    for (var i = 1; i < nombre_usuario.length; i++) {
+        var caracter = nombre_usuario.charAt(i);
+        if (!esLetra(caracter) && !esDigito(caracter)) {
+            div_error_nombre_usuario.innerHTML = 'El nombre de usuario solo puede contener letras y dígitos';
+            div_error_nombre_usuario.className = 'text-danger small mt-1';
+            return false;
+        }
+        if (esDigito(caracter)) {
+            encontradoNumero = true;
+        } else if (encontradoNumero && esLetra(caracter)) {
+            div_error_nombre_usuario.innerHTML = 'Los numeros solamente pueden ir al final';
+            div_error_nombre_usuario.className = 'text-danger small mt-1';
+            return false;
+        }
+    }
+
+    div_error_nombre_usuario.innerHTML = '';
+    return true;
+}
+
+function esLetra(caracter) {
+    return (caracter >= 'A' && caracter <= 'Z') || (caracter >= 'a' && caracter <= 'z');
+}
+
+function esDigito(caracter) {
+    return caracter >= '0' && caracter <= '9';
 }
 
 function validar_contraseña() {
