@@ -1,5 +1,4 @@
 function validar() {
-    console.log("Ejecutando la función de validación");
     var retorno_nombre_usuario = validar_nombre_usuario();
     var retorno_contraseña = validar_contraseña();
     var retorno_confirmacion_contraseña = validar_confirmacion_contraseña();
@@ -36,6 +35,8 @@ function validar_nombre_usuario() {
 function validar_contraseña() {
     var input_contraseña = document.getElementById('input-contraseña');
     var div_error_contraseña = document.getElementById('error-contraseña');
+    var input_nombre_usuario = document.getElementById('input-nombre-usuario');
+    var nombre_usuario = input_nombre_usuario.value;
     var contraseña = input_contraseña.value;
 
     if (contraseña === '') {
@@ -44,6 +45,10 @@ function validar_contraseña() {
         return false;
     } else if (contraseña.length < 6) {
         div_error_contraseña.innerHTML = 'La contraseña debe tener al menos 6 caracteres';
+        div_error_contraseña.className = 'text-danger small mt-1';
+        return false;
+    } else if (contraseña.includes(nombre_usuario)) {
+        div_error_contraseña.innerHTML = 'La contraseña no puede ser igual al nombre de usuario';
         div_error_contraseña.className = 'text-danger small mt-1';
         return false;
     } else {
